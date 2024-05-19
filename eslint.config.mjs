@@ -8,7 +8,7 @@ export default [
     
     languageOptions: { globals: globals.browser },
     
-    extends : ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+    // extends : ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"] Mezba vai told to put it here,
 
     ignores: ["**/node_modules/", ".dist/"],
      rules : {
