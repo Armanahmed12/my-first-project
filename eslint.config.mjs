@@ -1,23 +1,29 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
 
-
+/** @type {import('eslint').Linter.Config[]} */
 export default [
+  { files: ['**/*.{js,mjs,cjs,ts}'] },
+
   {
-    
-    languageOptions: { globals: globals.browser },
-    
-    // extends : ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"] Mezba vai told to put it here,
+    languageOptions: {
+      globals: {
+        ...globals.browser, // Spread the browser globals
+        process: 'readonly', // Add your custom global here
+      },
+    },
+    rules: {
+      'no-unused-vars': 'error',
+      'no-unused-expressions': 'error',
+      'prefer-const': 'error',
+      'no-console': 'warn',
+      'no-undef': 'error',
+    },
+  },
 
-    ignores: ["**/node_modules/", ".dist/"],
-     rules : {
-
-         "no-unused-vars" : "error",
-         "no-undef" : "error",
-         "prefer-const" : "error",
-         "no-console" : "warn"
-     }
+  {
+    ignores: [],
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
